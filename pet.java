@@ -16,28 +16,47 @@ public class pet {
         ArrayList<String> foodList = new ArrayList<>();
         foodList.add("beans");
 
-        String food = "";
-        System.out.println("I'm hungry");
-        Scanner scan = new Scanner(System.in);
-        System.out.print("What's my food: ");
-        food = scan.next();
+        // String food = "";
+        // System.out.println("I'm hungry");
+        // Scanner scan = new Scanner(System.in);
+        // System.out.print("What's my food: ");
+        // food = scan.next();
+
+        foodInput food = new foodInput();
+        food.food();
 
         while (!foodList.contains(food)) {
             counter += 1;
-            if (counter == 5) {
+            if (counter == 3) {
                 System.out.println(dontLikeFoodOne);
                 System.out.println("Game over!");
                 break;
             } else {
-                System.out.println(dontLikeFoodOne);
-                System.out.print("What's my food: ");
-                food = scan.next();
-            }
-                
+                if (counter == 0) {
+                    System.out.println(dontLikeFoodOne);
+                    // System.out.print("What's my food: ");
+                    food.food();
+                } else if (counter == 1) {
+                    System.out.println(dontLikeFoodTwo);
+                    // System.out.print("What's my food: ");
+                    food.food();
+                } else if (counter == 2) {
+                    System.out.println(dontLikeFoodThree);
+                    // System.out.print("What's my food: ");
+                    food.food();
+                }
+            }                
         }
-        if (food.equals("beans") ) {
-            scan.close();
+
+        if (foodList.contains(food) && counter == 0) {
+            // scan.close();
             System.out.println(faveFoodOne);
+        } else if (foodList.contains(food) && counter == 1) {
+            // scan.close();
+            System.out.println(faveFoodTwo); 
+        } else if (foodList.contains(food) && counter == 2) {
+            // scan.close();
+            System.out.println(faveFoodThree); 
         }
         
     }
