@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class pet {
 
@@ -16,16 +15,10 @@ public class pet {
         ArrayList<String> foodList = new ArrayList<>();
         foodList.add("beans");
 
-        // String food = "";
-        // System.out.println("I'm hungry");
-        // Scanner scan = new Scanner(System.in);
-        // System.out.print("What's my food: ");
-        // food = scan.next();
-
         foodInput food = new foodInput();
-        food.food();
+        String foodItem = food.food();
 
-        while (!foodList.contains(food)) {
+        while (!foodList.contains(foodItem)) {
             counter += 1;
             if (counter == 3) {
                 System.out.println(dontLikeFoodOne);
@@ -34,31 +27,21 @@ public class pet {
             } else {
                 if (counter == 0) {
                     System.out.println(dontLikeFoodOne);
-                    // System.out.print("What's my food: ");
-                    food.food();
                 } else if (counter == 1) {
                     System.out.println(dontLikeFoodTwo);
-                    // System.out.print("What's my food: ");
-                    food.food();
                 } else if (counter == 2) {
                     System.out.println(dontLikeFoodThree);
-                    // System.out.print("What's my food: ");
-                    food.food();
                 }
+                foodItem = food.food();
             }                
         }
 
-        if (foodList.contains(food) && counter == 0) {
-            // scan.close();
+        if (foodList.contains(foodItem) && counter == 0) {
             System.out.println(faveFoodOne);
-        } else if (foodList.contains(food) && counter == 1) {
-            // scan.close();
+        } else if (foodList.contains(foodItem) && counter == 1) {
             System.out.println(faveFoodTwo); 
-        } else if (foodList.contains(food) && counter == 2) {
-            // scan.close();
+        } else if (foodList.contains(foodItem) && counter == 2) {
             System.out.println(faveFoodThree); 
-        }
-        
+        }        
     }
-
 }
