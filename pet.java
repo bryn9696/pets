@@ -11,6 +11,8 @@ public class pet {
         String faveFoodTwo = "\uD83E\uDD17";
         String faveFoodThree = "\uD83D\uDE06";
 
+        int counter = 0;
+
         String food = "";
         System.out.println("I'm hungry");
         Scanner scan = new Scanner(System.in);
@@ -18,27 +20,23 @@ public class pet {
         food = scan.next();
 
         while (!food.equals("beans")) {
-            System.out.println(dontLikeFoodOne);
-            System.out.print("What's my food: ");
-            food = scan.next();
+            counter += 1;
+            if (counter == 5) {
+                System.out.println(dontLikeFoodOne);
+                System.out.println("Game over!");
+                break;
+            } else {
+                System.out.println(dontLikeFoodOne);
+                System.out.print("What's my food: ");
+                food = scan.next();
+            }
                 
         }
         if (food.equals("beans") ) {
             scan.close();
-            System.out.println(faveFoodTwo);
+            System.out.println(faveFoodOne);
         }
+        
     }
 
-
-    // public static String food() {
-    //     String food = "";
-    //     System.out.println("I'm hungry");
-    //     Scanner scan = new Scanner(System.in);
-    //     System.out.print("What's my food: ");
-    //     System.out.println("%%%%%%");
-    //     food = scan.next();
-    //     System.out.println("********");
-    //     // scan.close();
-    //     return food;
-    // }
 }
