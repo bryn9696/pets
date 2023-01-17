@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class pet {
@@ -12,6 +13,8 @@ public class pet {
         String faveFoodThree = "\uD83D\uDE06";
 
         int counter = 0;
+        ArrayList<String> foodList = new ArrayList<>();
+        foodList.add("beans");
 
         String food = "";
         System.out.println("I'm hungry");
@@ -19,7 +22,7 @@ public class pet {
         System.out.print("What's my food: ");
         food = scan.next();
 
-        while (!food.equals("beans")) {
+        while (!foodList.contains(food)) {
             counter += 1;
             if (counter == 5) {
                 System.out.println(dontLikeFoodOne);
