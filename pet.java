@@ -3,6 +3,9 @@ import java.util.ArrayList;
 public class pet {
 
     public static void main(String[] args) {
+        username user = new username();
+        String username = user.userName();
+        
         String dontLikeFoodOne = "\uD83D\uDE21";
         String dontLikeFoodTwo = "\uD83E\uDD22";
         String dontLikeFoodThree = "\uD83E\uDD2E";
@@ -22,7 +25,7 @@ public class pet {
             counter += 1;
             if (counter == 3) {
                 System.out.println(dontLikeFoodOne);
-                System.out.println("Game over!");
+                System.out.println("Game over, " + username + "!");
                 break;
             } else {
                 if (counter == 0) {
@@ -37,11 +40,11 @@ public class pet {
         }
 
         if (foodList.contains(foodItem) && counter == 0) {
-            System.out.println(faveFoodOne);
+            System.out.println(faveFoodOne + "\n" + username + " guessed it in " + (counter + 1) );
         } else if (foodList.contains(foodItem) && counter == 1) {
-            System.out.println(faveFoodTwo); 
+            System.out.println(faveFoodTwo + "\n" + username + " guessed it in " + (counter + 1) ); 
         } else if (foodList.contains(foodItem) && counter == 2) {
-            System.out.println(faveFoodThree); 
+            System.out.println(faveFoodThree + "\n" + username + " guessed it in " + (counter + 1) ); 
         }        
     }
 }
