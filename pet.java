@@ -15,42 +15,50 @@ public class pet {
         String faveFoodTwo = "\uD83E\uDD17";
         String faveFoodThree = "\uD83D\uDE06";
 
-        int counter = 0;
+        int guessCounter = 0;
+        int petAge = 1;
+
+        Hashtable<String, Integer>
+        userScore = new Hashtable<String, Integer>();
+
         ArrayList<String> foodList = new ArrayList<>();
         foodList.add("beans");
 
         foodInput food = new foodInput();
         String foodItem = food.food();
 
-        while (!foodList.contains(foodItem)) {
-            counter += 1;
-            if (counter == 3) {
-                System.out.println(dontLikeFoodOne);
-                System.out.println("Game over, " + username + "!");
-                break;
-            } else {
-                if (counter == 0) {
+        while (petAge != 0) {
+            while (!foodList.contains(foodItem)) {
+                guessCounter += 1;
+                if (guessCounter == 3) {
                     System.out.println(dontLikeFoodOne);
-                } else if (counter == 1) {
-                    System.out.println(dontLikeFoodTwo);
-                } else if (counter == 2) {
-                    System.out.println(dontLikeFoodThree);
-                }
-                foodItem = food.food();
-            }                
+                    System.out.println("Game over, " + username + "!");
+                    petAge = 0;
+                    break;
+                } else {
+                    if (guessCounter == 0) {
+                        System.out.println(dontLikeFoodOne);
+                    } else if (guessCounter == 1) {
+                        System.out.println(dontLikeFoodTwo);
+                    } else if (guessCounter == 2) {
+                        System.out.println(dontLikeFoodThree);
+                    }
+                    foodItem = food.food();
+                }                
+            }
+
+            if (foodList.contains(foodItem) && guessCounter == 0) {
+                petAge += 1;
+                System.out.println(faveFoodOne + "\n" + username + " is now " + petAge + " years old!" ) ;
+            } else if (foodList.contains(foodItem) && guessCounter == 1) {
+                System.out.println(faveFoodTwo + "\n" + username + " guessed it in " + (guessCounter + 1) ); 
+            } else if (foodList.contains(foodItem) && guessCounter == 2) {
+                System.out.println(faveFoodThree + "\n" + username + " guessed it in " + (guessCounter + 1) ); 
+            } else if (guessCounter > 2) {
+                break;
+            }
+            foodItem = food.food();
         }
-
-        Hashtable<String, Integer>
-            userScore = new Hashtable<String, Integer>();
-
-        userScore.put(username, (counter+1));
-
-        if (foodList.contains(foodItem) && counter == 0) {
-            System.out.println(faveFoodOne + "\n" + userScore.toString() ) ;
-        } else if (foodList.contains(foodItem) && counter == 1) {
-            System.out.println(faveFoodTwo + "\n" + username + " guessed it in " + (counter + 1) ); 
-        } else if (foodList.contains(foodItem) && counter == 2) {
-            System.out.println(faveFoodThree + "\n" + username + " guessed it in " + (counter + 1) ); 
-        }        
+        userScore.put(username, (guessCounter+1));  
     }
 }
