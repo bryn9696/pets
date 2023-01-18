@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class pet {
 
@@ -39,8 +40,13 @@ public class pet {
             }                
         }
 
+        Hashtable<String, Integer>
+            userScore = new Hashtable<String, Integer>();
+
+        userScore.put(username, (counter+1));
+
         if (foodList.contains(foodItem) && counter == 0) {
-            System.out.println(faveFoodOne + "\n" + username + " guessed it in " + (counter + 1) );
+            System.out.println(faveFoodOne + "\n" + userScore.toString() ) ;
         } else if (foodList.contains(foodItem) && counter == 1) {
             System.out.println(faveFoodTwo + "\n" + username + " guessed it in " + (counter + 1) ); 
         } else if (foodList.contains(foodItem) && counter == 2) {
