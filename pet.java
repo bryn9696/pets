@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class pet {
-
     public static void main(String[] args) {
         username pet = new username();
         String petName = pet.userName();
@@ -61,20 +60,34 @@ public class pet {
                 petAge = -1; 
                 break;
             } else if (foodList.contains(foodItem) && guessCounter == 0) {
-                petAge += 1;
                 guessCounter = 0;
-                System.out.println(faveFoodOne + "\n" + petName + " is now " + petAge + " years old!" ) ;
+                direction directionClass = new direction();
+                float direction = directionClass.whichWay();
+                petAge += direction * 10;
+                if (direction == -0.1) {System.out.println(dontLikeFoodOne);}
+                else {System.out.println(faveFoodOne);}
+                System.out.println(petName + " is now " + petAge + " years old!" ) ;
             } else if (foodList.contains(foodItem) && guessCounter == 1) {
-                petAge += 0.5;
                 guessCounter = 0;
-                System.out.println(faveFoodTwo + "\n" + petName + " is now " + petAge + " years old!" ); 
+                direction directionClass = new direction();
+                float direction = directionClass.whichWay();
+                petAge += direction * 5;
+                if (direction == -0.1) {System.out.println(dontLikeFoodOne);}
+                else {System.out.println(faveFoodTwo);}
+                System.out.println(petName + " is now " + petAge + " years old!" ); 
             } else if (foodList.contains(foodItem) && guessCounter == 2) {
-                System.out.println(faveFoodThree + "\n" + petName + " guessed it in " + (guessCounter + 1) ); 
+                guessCounter = 0;
+                direction directionClass = new direction();
+                float direction = directionClass.whichWay();
+                petAge += direction * 2.5;
+                if (direction == -0.1) {System.out.println(dontLikeFoodOne);}
+                else {System.out.println(faveFoodThree);}
+                System.out.println(petName + " is now " + petAge + " years old!" ); 
             } else if (guessCounter > 2) {
                 break;
             }
+
             foodItem = food.food();
         }
-        userScore.put(petName, (petAgeReturn));  
     }
 }
