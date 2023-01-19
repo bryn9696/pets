@@ -76,7 +76,6 @@ public class pet {
                 break;
             }
             foodItem = food.food();
-        }
-          
+        }          
     }
 }
