@@ -69,13 +69,12 @@ public class pet {
                 guessCounter = 0;
                 System.out.println(faveFoodTwo + "\n" + petName + " is now " + petAge + " years old!" ); 
             } else if (foodList.contains(foodItem) && guessCounter == 2) {
-                petAge += 0.25;
-                guessCounter = 0;
-                System.out.println(faveFoodThree + "\n" + petName + " is now " + petAge + " years old!" ); 
+                System.out.println(faveFoodThree + "\n" + petName + " guessed it in " + (guessCounter + 1) ); 
             } else if (guessCounter > 2) {
                 break;
             }
             foodItem = food.food();
-        }          
+        }
+        userScore.put(petName, (petAgeReturn));  
     }
 }
