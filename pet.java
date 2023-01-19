@@ -4,8 +4,8 @@ import java.util.Hashtable;
 public class pet {
 
     public static void main(String[] args) {
-        username user = new username();
-        String username = user.userName();
+        username pet = new username();
+        String petName = pet.userName();
         
         String dontLikeFoodOne = "\uD83D\uDE21";
         String dontLikeFoodTwo = "\uD83E\uDD22";
@@ -16,10 +16,11 @@ public class pet {
         String faveFoodThree = "\uD83D\uDE06";
 
         int guessCounter = 0;
-        int petAge = 1;
+        float petAge = 0;
+        float petAgeReturn = petAge;
 
-        Hashtable<String, Integer>
-        userScore = new Hashtable<String, Integer>();
+        Hashtable<String, Float>
+        userScore = new Hashtable<String, Float>();
 
         ArrayList<String> foodList = new ArrayList<>();
         foodList.add("beans");
@@ -27,15 +28,20 @@ public class pet {
         foodInput food = new foodInput();
         String foodItem = food.food();
 
-        while (petAge != 0) {
-            while (!foodList.contains(foodItem)) {
+        while (petAge != -1)  {
+
+            while (!foodList.contains(foodItem) && petAge != -1) {
                 guessCounter += 1;
-                if (guessCounter == 3) {
-                    System.out.println(dontLikeFoodOne);
-                    System.out.println("Game over, " + username + "!");
-                    petAge = 0;
+                if ( foodItem.equals("q") || foodItem.equals("quit")) {
+                    petAgeReturn = petAge;
+                    petAge = -1; 
                     break;
-                } else {
+                } else if (guessCounter == 3) {
+                    System.out.println(dontLikeFoodOne);
+                    System.out.println("Game over, " + petName + "!");
+                    petAge = -1;
+                    break;
+                } else if (guessCounter < 3) {
                     if (guessCounter == 0) {
                         System.out.println(dontLikeFoodOne);
                     } else if (guessCounter == 1) {
@@ -43,22 +49,34 @@ public class pet {
                     } else if (guessCounter == 2) {
                         System.out.println(dontLikeFoodThree);
                     }
-                    foodItem = food.food();
-                }                
+                }
+                foodItem = food.food();
+                           
             }
 
-            if (foodList.contains(foodItem) && guessCounter == 0) {
+            userScore.put(petName, (petAgeReturn));
+            if ( foodItem.equals("q") || foodItem.equals("quit")) {
+                petAgeReturn = petAge;
+                System.out.println(userScore);
+                petAge = -1; 
+                break;
+            } else if (foodList.contains(foodItem) && guessCounter == 0) {
                 petAge += 1;
-                System.out.println(faveFoodOne + "\n" + username + " is now " + petAge + " years old!" ) ;
+                guessCounter = 0;
+                System.out.println(faveFoodOne + "\n" + petName + " is now " + petAge + " years old!" ) ;
             } else if (foodList.contains(foodItem) && guessCounter == 1) {
-                System.out.println(faveFoodTwo + "\n" + username + " guessed it in " + (guessCounter + 1) ); 
+                petAge += 0.5;
+                guessCounter = 0;
+                System.out.println(faveFoodTwo + "\n" + petName + " is now " + petAge + " years old!" ); 
             } else if (foodList.contains(foodItem) && guessCounter == 2) {
-                System.out.println(faveFoodThree + "\n" + username + " guessed it in " + (guessCounter + 1) ); 
+                petAge += 0.25;
+                guessCounter = 0;
+                System.out.println(faveFoodThree + "\n" + petName + " is now " + petAge + " years old!" ); 
             } else if (guessCounter > 2) {
                 break;
             }
             foodItem = food.food();
         }
-        userScore.put(username, (guessCounter+1));  
+          
     }
 }
