@@ -4,7 +4,7 @@ public class username {
     public String userName() {
         String username = "";
         while (username.isBlank()) {
-            System.out.println("Enter username");
+            System.out.println("Enter your pets name");
             Scanner scan = new Scanner(System.in);
             username = scan.next();
             username = username.substring(0, 1).toUpperCase() + username.substring(1);
