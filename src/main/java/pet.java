@@ -15,7 +15,7 @@ public class pet {
         String faveFoodThree = "\uD83D\uDE06";
 
         int guessCounter = 0;
-        float petAge = 0;
+        float petAge = 1;
         float petAgeReturn = petAge;
 
         Hashtable<String, Float>
@@ -27,7 +27,7 @@ public class pet {
         foodInput food = new foodInput();
         String foodItem = food.food();
 
-        while (petAge != -1)  {
+        while (petAge > 0)  {
 
             while (!foodList.contains(foodItem) && petAge != -1) {
                 guessCounter += 1;
@@ -62,32 +62,37 @@ public class pet {
             } else if (foodList.contains(foodItem) && guessCounter == 0) {
                 guessCounter = 0;
                 direction directionClass = new direction();
-                float direction = directionClass.whichWay();
-                petAge += direction * 10;
-                if (direction == -0.1) {System.out.println(dontLikeFoodOne);}
+                double direction = directionClass.whichWay();
+                petAge += direction;
+                if (direction < 0) {System.out.println(dontLikeFoodOne);}
                 else {System.out.println(faveFoodOne);}
                 System.out.println(petName + " is now " + petAge + " years old!" ) ;
             } else if (foodList.contains(foodItem) && guessCounter == 1) {
                 guessCounter = 0;
                 direction directionClass = new direction();
-                float direction = directionClass.whichWay();
-                petAge += direction * 5;
-                if (direction == -0.1) {System.out.println(dontLikeFoodOne);}
+                double direction = directionClass.whichWay();
+                petAge += direction;
+                if (direction < 0) {System.out.println(dontLikeFoodOne);}
                 else {System.out.println(faveFoodTwo);}
                 System.out.println(petName + " is now " + petAge + " years old!" ); 
             } else if (foodList.contains(foodItem) && guessCounter == 2) {
                 guessCounter = 0;
                 direction directionClass = new direction();
-                float direction = directionClass.whichWay();
-                petAge += direction * 2.5;
-                if (direction == -0.1) {System.out.println(dontLikeFoodOne);}
+                double direction = directionClass.whichWay();
+                petAge += direction;
+                if (direction <4) {System.out.println(dontLikeFoodOne);}
                 else {System.out.println(faveFoodThree);}
                 System.out.println(petName + " is now " + petAge + " years old!" ); 
             } else if (guessCounter > 2) {
+                System.out.println(petName + " died from not enough food");
+                System.out.println(userScore);
                 break;
             }
 
-            foodItem = food.food();
+            if (petAge < 0) {
+                System.out.println(petName + " died from not enough food");
+                break;
+            } else { foodItem = food.food(); }
         }
     }
 }
