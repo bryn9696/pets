@@ -15,11 +15,12 @@ public class pet {
         String faveFoodThree = "\uD83D\uDE06";
 
         int guessCounter = 0;
-        float petAge = 1;
-        float petAgeReturn = petAge;
+        float petHealth = 1;
+        float petHealthReturn = petHealth;
+        int petAge = 0;
 
-        Hashtable<String, Float>
-        userScore = new Hashtable<String, Float>();
+        Hashtable<String, Integer>
+        userScore = new Hashtable<String, Integer>();
 
         ArrayList<String> foodList = new ArrayList<>();
         foodList.add("beans");
@@ -27,13 +28,16 @@ public class pet {
         foodInput food = new foodInput();
         String foodItem = food.food();
 
-        while (petAge > 0)  {
+        userScore.put(petName, (petAge));
 
-            while (!foodList.contains(foodItem) && petAge != -1) {
+        while (petAge >= 0)  {
+
+            while (!foodList.contains(foodItem) && petHealth != -1) {
                 guessCounter += 1;
                 if ( foodItem.equals("q") || foodItem.equals("quit")) {
-                    petAgeReturn = petAge;
+                    petHealthReturn = petHealth;
                     petAge = -1; 
+                    // System.out.println(userScore);
                     break;
                 } else if (guessCounter == 3) {
                     System.out.println(dontLikeFoodOne);
@@ -53,9 +57,8 @@ public class pet {
                            
             }
 
-            userScore.put(petName, (petAgeReturn));
             if ( foodItem.equals("q") || foodItem.equals("quit")) {
-                petAgeReturn = petAge;
+                petHealthReturn = petHealth;
                 System.out.println(userScore);
                 petAge = -1; 
                 break;
@@ -63,36 +66,52 @@ public class pet {
                 guessCounter = 0;
                 direction directionClass = new direction();
                 double direction = directionClass.whichWay();
-                petAge += direction;
+                petHealth += direction;
                 if (direction < 0) {System.out.println(dontLikeFoodOne);}
                 else {System.out.println(faveFoodOne);}
-                System.out.println(petName + " is now " + petAge + " years old!" ) ;
+                System.out.println(petName + "'s health is now " + petHealth + "!" ) ;
+                // if (petHealth == 0) { petAge -= 1; System.out.println(petAge);}
             } else if (foodList.contains(foodItem) && guessCounter == 1) {
                 guessCounter = 0;
                 direction directionClass = new direction();
                 double direction = directionClass.whichWay();
-                petAge += direction;
+                petHealth += direction;
                 if (direction < 0) {System.out.println(dontLikeFoodOne);}
                 else {System.out.println(faveFoodTwo);}
-                System.out.println(petName + " is now " + petAge + " years old!" ); 
+                System.out.println(petName + "'s health is now " + petHealth + "!" ); 
+                // if (petHealth == 0) { petAge -= 1; System.out.println(petAge);}
             } else if (foodList.contains(foodItem) && guessCounter == 2) {
                 guessCounter = 0;
                 direction directionClass = new direction();
                 double direction = directionClass.whichWay();
-                petAge += direction;
+                petHealth += direction;
                 if (direction <4) {System.out.println(dontLikeFoodOne);}
                 else {System.out.println(faveFoodThree);}
-                System.out.println(petName + " is now " + petAge + " years old!" ); 
+                System.out.println(petName + "'s health is now " + petHealth + "!" ); 
+                // if (petHealth == 0) { petAge -= 1; System.out.println(petAge);}
             } else if (guessCounter > 2) {
                 System.out.println(petName + " died from not enough food");
                 System.out.println(userScore);
                 break;
             }
 
-            if (petAge < 0) {
+            if (petHealth == 5) {
+                petAge += 1;
+                petHealth = 1;
+                System.out.println(petName + " is now " + petAge + " years old!");
+            }
+
+            if (petAge > 0 && petHealth == 0) {
+                petAge -= 1;
+                System.out.println(petName + " is now " + petAge);
+            } else if (petAge < 0) {
                 System.out.println(petName + " died from not enough food");
-                break;
-            } else { foodItem = food.food(); }
+                System.out.println(userScore);
+            }
+
+            foodItem = food.food();
         }
+
+
     }
 }
