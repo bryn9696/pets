@@ -14,12 +14,18 @@ public class direction {
         double up = randomNumber;
         double down = randomNumber;
 
-        if (direction.equals("left")) {
-            if (left > 4) {
+        if (direction.equals("q") || direction.equals("quit")) {
+            healthLevel = 0;
+        } else if (direction.equals("left")) {
+            if (left > 7) {
                 System.out.println("no food here");
                 healthLevel = -0.5; 
+            } else if (left > 4) {
+                System.out.println("Fight!");
+                healthLevel = 0;
             } else { System.out.println("Yay! food");
                 healthLevel = 1;}
+            
         } else if (direction.equals("right")) {
             if (right > 4) {
                 System.out.println("no food here");

@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import org.w3c.dom.events.MouseEvent;
+
 public class pet {
     public static void main(String[] args) {
         username pet = new username();
@@ -66,29 +68,39 @@ public class pet {
                 guessCounter = 0;
                 direction directionClass = new direction();
                 double direction = directionClass.whichWay();
-                petHealth += direction;
+                if (direction == 0) {
+                    // fight fightClass = new fight();
+                    // int fight = fightClass.battle(event);
+                    // System.out.println(fight);
+                } else { petHealth += direction; }
                 if (direction < 0) {System.out.println(dontLikeFoodOne);}
                 else {System.out.println(faveFoodOne);}
                 System.out.println(petName + "'s health is now " + petHealth + "!" ) ;
-                // if (petHealth == 0) { petAge -= 1; System.out.println(petAge);}
             } else if (foodList.contains(foodItem) && guessCounter == 1) {
                 guessCounter = 0;
                 direction directionClass = new direction();
                 double direction = directionClass.whichWay();
-                petHealth += direction;
+                if (direction == 0) {
+                    // fight fightClass = new fight();
+                    // int fight = fightClass.battle(event);
+                    // System.out.println(fight);
+                } else { petHealth += direction; }
                 if (direction < 0) {System.out.println(dontLikeFoodOne);}
                 else {System.out.println(faveFoodTwo);}
                 System.out.println(petName + "'s health is now " + petHealth + "!" ); 
-                // if (petHealth == 0) { petAge -= 1; System.out.println(petAge);}
             } else if (foodList.contains(foodItem) && guessCounter == 2) {
                 guessCounter = 0;
                 direction directionClass = new direction();
                 double direction = directionClass.whichWay();
-                petHealth += direction;
+                if (direction == 0) {
+                    // fight fightClass = new fight();
+                    // int fight = fightClass.battle(event);
+                    // petHealth += fight;
+                    // System.out.println(petName + "'s health is " + petHealth);
+                } else { petHealth += direction; }
                 if (direction <4) {System.out.println(dontLikeFoodOne);}
                 else {System.out.println(faveFoodThree);}
                 System.out.println(petName + "'s health is now " + petHealth + "!" ); 
-                // if (petHealth == 0) { petAge -= 1; System.out.println(petAge);}
             } else if (guessCounter > 2) {
                 System.out.println(petName + " died from not enough food");
                 System.out.println(userScore);
@@ -111,7 +123,6 @@ public class pet {
 
             foodItem = food.food();
         }
-
-
     }
+
 }
